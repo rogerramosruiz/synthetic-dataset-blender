@@ -8,13 +8,21 @@ def convert_yolo(x1,y1,x2,y2, shape):
     w = abs(x2 - x1) / shape[1]
     return x, y, w, h
 
-def distance(a,b):
+def distance(a, b):
+    """
+    Returns the distance between two blender meshes
+    """
     d = a.location - b.location
     for i in range(len(d)):
         d[i] = abs(d[i])        
     return d
 
 def init(collections, path):
+    """
+    Initialization
+    Creates a directory to renderthe images and saves 
+    the classes.txt with all the collections names
+    """
     if not os.path.exists(path):
         os.mkdir(path)
     names = {}
@@ -29,6 +37,13 @@ def init(collections, path):
     return names
 
 def progress(colname, i= None, n=None):
+    """
+    colname: name of the colleciton
+    i: Current number of render made
+    n: Number of renders per collection
+
+    Save in a txt file the progress made
+    """
     with open(f'progress {collection_start} - {collection_end}.txt', 'a') as f:
         if i==None and n == None:
             f.write('-------------------------------------------\n')

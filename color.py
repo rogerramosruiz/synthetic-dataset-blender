@@ -2,60 +2,103 @@ import random
 from mathutils import Color
 from data import obj_data
 
-def shift_color(obj,collectionName):
-    if 'custom_function' in obj_data[collectionName]:
-        return obj_data[collectionName]['custom_function'](obj, collectionName)
+def shift_color(obj, collection_name):
+    """
+    obj: Blender mesh
+    collection_name: Mesh collection name
+
+    Randomly change an object mesh color
+    Return an array of materials, to be disposed later on
+
+    """
+    
+    # If the collection name has an especfic function to change its color
+    if 'custom_function' in obj_data[collection_name]:
+        return obj_data[collection_name]['custom_function'](obj, collection_name)
+    # Materials to be used
     materials = []
-    color = random.choice(obj_data[collectionName]['colors']) if 'colors' in obj_data[collectionName] else None
+    # Choose a random color, unless is there are already colors defined for a particular mesh in obj_data
+    color = random.choice(obj_data[collection_name]['colors']) if 'colors' in obj_data[collection_name] else None
+    
+    # Go through all materials
     for i in range(len(obj.material_slots)):
+
         material = obj.material_slots[i].material
+        # Copy the material in order to not alter the original one
         new_material = material.copy()
         obj.material_slots[i].material = new_material
         materials.append(new_material)
-        prob = obj_data[collectionName][material.name]
+        # Get probabily of changing the color according to data specified in obj_data
+        prob = obj_data[collection_name][material.name]
         if random.random() < prob:
             color_change(new_material, color)
     
     return materials    
     
 def color_change(material, color = None):
+    """
+    Randomly change the color for a an object mesh
+    """
+    # name of the material
     name = material.name.split('.')[0]
+    # node name of the material by defualt is Principled BSDF unless is set something different 
+    # in the dictonary matereial_BSDFS
     node_name = matereial_BSDFS[name] if name in matereial_BSDFS else 'Principled BSDF'
+    # If its color ramp change in the color in function color_ramp
     if node_name == 'ColorRamp':
         color_ramp(material, color)
     else:
+        # Alter the mateiral color randomly
         rgba = color if color != None else [random.random(), random.random(), random.random(), 1]
         material.node_tree.nodes[node_name].inputs[0].default_value = rgba
     
 
 def color_ramp(material, color = None):
+    """
+    Random colors in color ramp
+    """
+    # create a ranodm color if there is no default color
     rgba = (random.random(), random.random(), random.random(), 1) if color == None else (color[0], color[1], color[2], 1)
     color_ramp_node = material.node_tree.nodes['ColorRamp']
+    # Color object for altering the hue
     color = Color(rgba[:-1])
+
+    # Go through all colors in color ramp
     for i in range(len(color_ramp_node.color_ramp.elements)):
+        # if its the first color set to the random color generated before
         if i == 0:
             color_ramp_node.color_ramp.elements[i].color = rgba
+        # For the rest of the colors alter the hue randomly
         else:
             color.hsv = (color.h, color.s, random.random())
             color_ramp_node.color_ramp.elements[i].color = (color.r, color.g, color.b, 1)
 
 
 def color_bottle(obj, collectionName):
+    """
+    Custom function color for bottle objects
+    """
     materials = []
     for i in range(len(obj.material_slots)):
+        # Get the probabily for the bottle to have a label
         no_label_prob =  obj_data[collectionName]['no_label_prob']
         material = obj.material_slots[i].material
         prob = 0
-        # remove label maeterial
+        # randomly remove label maeterial based on probabily of no_lavel_prob
         if random.random() < no_label_prob and 'label' in material.name:
             material = obj.material_slots[0].material
         else:
             prob = obj_data[collectionName][material.name]
+        
+        # Copy the maerial so the original material won't altered for the next meshes
         new_material = material.copy()
+        # Set the copied material in the mesh
         obj.material_slots[i].material = new_material
         materials.append(new_material)
         if random.random() < prob:
+            # Create a random color
             color = (random.random(), random.random(), random.random(), 1)
+            # add random noise to the label, so it will more colorful
             if material.name == 'label':
                 noise = new_material.node_tree.nodes['Noise Texture.001']
                 noise.inputs['Scale'].default_value = random.uniform(3,35)
@@ -68,10 +111,13 @@ def color_bottle(obj, collectionName):
                 color_change(new_material, color)
     return materials
 
-
+# Specific types of shader used for one material
+# if a mateiral is not here the default shader will be Principled BSDF
 matereial_BSDFS = {
     'spoon'              :  'Diffuse BSDF',
     'Plastic_transparent':  'Glass BSDF',
     'gloves'              :  'ColorRamp'
 }
+
+# Set custom fucntion for speficif collections
 obj_data['bottle']['custom_function'] =  color_bottle
