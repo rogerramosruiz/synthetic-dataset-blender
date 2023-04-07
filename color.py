@@ -83,19 +83,20 @@ def color_bottle(obj, collectionName):
         # Get the probabily for the bottle to have a label
         no_label_prob =  obj_data[collectionName]['no_label_prob']
         material = obj.material_slots[i].material
-        prob = 0
+        # Probabily of having a colorful noise in label 
+        prob_noise_in_label = 0.8
         # randomly remove label maeterial based on probabily of no_lavel_prob
         if random.random() < no_label_prob and 'label' in material.name:
             material = obj.material_slots[0].material
         else:
-            prob = obj_data[collectionName][material.name]
+            prob_noise_in_label = obj_data[collectionName][material.name]
         
         # Copy the maerial so the original material won't altered for the next meshes
         new_material = material.copy()
         # Set the copied material in the mesh
         obj.material_slots[i].material = new_material
         materials.append(new_material)
-        if random.random() < prob:
+        if random.random() < prob_noise_in_label:
             # Create a random color
             color = (random.random(), random.random(), random.random(), 1)
             # add random noise to the label, so it will more colorful
