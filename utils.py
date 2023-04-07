@@ -1,7 +1,7 @@
 import os 
 from data import collection_start, collection_end
 
-def convertYolo(x1,y1,x2,y2, shape):
+def convert_yolo(x1,y1,x2,y2, shape):
     x = ((x1 + x2) / 2) / shape[1]
     y = ((y1 + y2) / 2) / shape[0]
     h = abs(y1 - y2) / shape[0]

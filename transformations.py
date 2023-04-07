@@ -3,22 +3,22 @@ import random
 from math import radians
 from mathutils import Euler
 from objOps import select
-from camera import camBox
+from camera import cam_box
 from data import scale_min, scale_max, minrot, maxrot, prob_roate, prob_scale
 
 def move(obj):
-    maxY = bpy.context.scene.objects['Plane'].location[1] - obj.dimensions[1]
-    randY = random.uniform(-1, maxY)
-    obj.location[1] = randY 
-    width, height = camBox(obj)
-    owidth, _, oheight = obj.dimensions    
-    owidth /= 2
-    oheight /= 2
-    x = width - owidth
-    z = height - oheight
-    randX = random.uniform(-x, x)
-    randZ = random.uniform(-z , z)
-    obj.location = (randX, randY, randZ)
+    max_y = bpy.context.scene.objects['Plane'].location[1] - obj.dimensions[1]
+    rand_y = random.uniform(-1, max_y)
+    obj.location[1] = rand_y 
+    width, height = cam_box(obj)
+    obj_width, _, obj_height = obj.dimensions    
+    obj_width /= 2
+    obj_height /= 2
+    x = width - obj_width
+    z = height - obj_height
+    rand_x = random.uniform(-x, x)
+    rand_z = random.uniform(-z , z)
+    obj.location = (rand_x, rand_y, rand_z)
         
 def rotate(obj): 
     if random.random() < prob_roate:

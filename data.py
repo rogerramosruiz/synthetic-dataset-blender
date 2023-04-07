@@ -10,10 +10,10 @@ straw
 """
 collection_start  = 'bag'
 collection_end    = 'straw'
-images_per_class = 1000
+images_per_class = 1
 filenameSize     = 10
 saveDir          = 'D:/dataset_shyntethic'
-imgDir           = 'D:/Devs/python/images/background'
+imgDir           = 'D:/generadores/synthtetic_dataset/images/background'
 prob_many_objs   = 0.3
 prob_add_obj     = 0.5
 
@@ -32,7 +32,7 @@ maxrot           = [80, 360, 360]
 background_min_y = 0
 background_max_y = 6
 
-objData = {
+obj_data = {
     'bag': {
         'garbagebags': 0.1,
         'transparent bag': 0.7
