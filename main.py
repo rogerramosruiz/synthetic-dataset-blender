@@ -89,13 +89,14 @@ def use_collection(collection):
     # Random zoom
     change_focal_length()
     # Choose the objects ot be render
-    ren_objs, colls = choose_objs(collection)
+    possible_objs, possible_collections = choose_objs(collection)
     objects = []
     materials = []
+    collections = []
     # Change the bakcground to a random image
     img = change_background(random.choice(imgs))
     # Go throug all the objects to render
-    for i in ren_objs:
+    for i, coll in zip(possible_objs, possible_collections):
         # Copy the current object and object data so the origianl  won't be altred for next render
         obj_copy = bpy.context.scene.objects[i].copy()
         obj_copy.data = bpy.context.scene.objects[i].data.copy()
@@ -107,18 +108,20 @@ def use_collection(collection):
         # Change the color of the materials in the object mesh 
         materials += shift_color(obj_copy, bpy.context.scene.objects[i].users_collection[0].name) 
         b = True
-        # Try 99 times to randomly acomodate the object mesh inside the view of the camera
-        for j in range(100):
+        # Try 99 times to randomly acomodate the object mesh inside the view of the camera with no intersections
+        tries = 100
+        for j in range(tries):
             # check the object dosen't intersect with others from camera's perspective
             for o in objects:
                 b = b and not intersersct(o, obj_copy)            
             # If there is no intersection append the object
             if b:
+                collections.append(coll)
                 objects.append(obj_copy)
                 break
-            # If the ojbect intersects with others make another random trasnfomation
+            # If the object intersects with others make another random trasnfomation
             # Unless its the try 99, then the object can not be fitted
-            elif j != 99:
+            elif j != tries -1:
                 # set the copied object mesh the original data like loation, rotation, scale
                 obj_copy.data = bpy.context.scene.objects[i].data.copy()
                 # ranodm transfomration
@@ -128,7 +131,7 @@ def use_collection(collection):
         if not b:
             delete(obj_copy)
     # Render and save the coordenates
-    save(objects, colls)
+    save(objects, collections)
     # Dispose copied objects 
     for obj in objects:
         delete(obj)
