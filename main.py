@@ -11,7 +11,7 @@ from objOps import delete
 from background import change_background
 from camera import bounding_box, change_focal_length
 from utils import init, progress
-from data import filenameSize, saveDir, imgDir, images_per_class, prob_many_objs, prob_add_obj, collection_start, collection_end
+from data import file_name_size, save_dir, img_dir, images_per_class, prob_many_objs, prob_add_obj, collection_start, collection_end
 from color import shift_color
 
 def save(objs, colls):
@@ -55,8 +55,8 @@ def random_filename():
     Genrate a random string 
     """
     letters = string.ascii_lowercase + string.ascii_uppercase
-    name = ''.join(random.choice(letters) for _ in range(filenameSize))
-    return f'{saveDir}/{name}'
+    name = ''.join(random.choice(letters) for _ in range(file_name_size))
+    return f'{save_dir}/{name}'
         
 def choose_objs(collection):
     """
@@ -158,10 +158,10 @@ def main(n):
 if __name__ == '__main__':
     start_time = time.time()
     # load images
-    imgs           = [os.path.join(imgDir, i) for i in os.listdir(imgDir)]
+    imgs           = [os.path.join(img_dir, i) for i in os.listdir(img_dir)]
     # load collections
     collections    = bpy.data.collections['Objects'].children
-    names          = init(collections, saveDir)
+    names          = init(collections, save_dir)
     main(images_per_class)
     total_time =  time.time() - start_time    
     print('Total time:', total_time)

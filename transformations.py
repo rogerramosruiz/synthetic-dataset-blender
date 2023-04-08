@@ -4,7 +4,7 @@ from math import radians
 from mathutils import Euler
 from objOps import select
 from camera import cam_box
-from data import scale_min, scale_max, minrot, maxrot, prob_roate, prob_scale
+from data import scale_min, scale_max, min_rot, max_rot, prob_roate, prob_scale
 
 def move(obj):
     """
@@ -34,9 +34,9 @@ def rotate(obj):
     Rotate a blender object mesh randomly defined by minrot and by maxrot
     """
     if random.random() < prob_roate:
-        rx = radians(random.uniform(minrot[0], maxrot[0]))
-        ry = radians(random.uniform(minrot[1], maxrot[1]))
-        rz = radians(random.uniform(minrot[2], maxrot[2])) 
+        rx = radians(random.uniform(min_rot[0], max_rot[0]))
+        ry = radians(random.uniform(min_rot[1], max_rot[1]))
+        rz = radians(random.uniform(min_rot[2], max_rot[2])) 
         obj.rotation_euler = Euler((rx, ry, rz), 'XYZ')
     
 def scale(obj):
