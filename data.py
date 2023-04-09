@@ -1,7 +1,3 @@
-# name of the collection to start
-collection_start = 'bag'
-# name of the collection to end
-collection_end = 'straw'
 # Number of images to generate per class or collection
 # E.G if  there are three collections A, B, C and the value is set to  10 
 # then there will be at least 10 images with collection A, 10 with B, and 10 with C

@@ -1,8 +1,7 @@
 import os 
-from data import collection_start, collection_end
 
 prog = {}
-prog_file_name = f'prog {collection_start}-{collection_end}.txt'
+prog_file_name = 'progress.txt'
 
 def convert_yolo(x1,y1,x2,y2, shape):
     x = ((x1 + x2) / 2) / shape[1]

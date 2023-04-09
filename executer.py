@@ -2,11 +2,16 @@ import time
 import subprocess
 
 from helper import blender_location, edit, get_blender_file
+"""
+The executer is used to separate in many chunks the total render and thus avoiding error of 
+RAM or the GPU memory being saturated:
 
+Error: System is out of GPU and shared host memory 
+"""
 # Images to render per class
-images_per_classs = 1000
+images_per_classs = 1
 # images to render per execution
-max_imgs = 100
+max_imgs = 3
 
 def render():
     subprocess.run([blender_command, blender_file, "--background", "--python", "main.py"])
