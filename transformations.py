@@ -41,7 +41,7 @@ def rotate(obj):
     
 def scale(obj):
     """
-    Randomly sclae a blender mesh object
+    Randomly scale a blender mesh object
     """
     if random.random() < prob_scale:
         scale = random.uniform(scale_min, scale_max)

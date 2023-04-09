@@ -27,7 +27,7 @@ def save(objs, colls):
     # Ensure the file name dosen't exist already
     while os.path.exists(f'{file_name}.jpg'):
         file_name = random_filename()
-    # Set the path for saving the render imaged
+    # Set the path for saving the render image
     bpy.context.scene.render.filepath = f'{file_name}'
     # Save the txt file with the coordenates of the image
     with open (f'{file_name}.txt', 'w') as f:
@@ -74,9 +74,9 @@ def choose_objs(collection):
     if random.random() < prob_many_objs:
         # Go through all collecitons
         for i in collections:
-            # Choose collection with probabliyf of prob_add_obj
+            # Choose collection with probabliy of prob_add_obj
             if random.random() < prob_add_obj:
-                # Choose a random object mesh form the random collection selected
+                # Choose a random object mesh from the random collection selected
                 render_objs.append(random.choice(i.all_objects).name)
                 # Add the collection selectd
                 collections_names.append(i.name)

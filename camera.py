@@ -69,7 +69,7 @@ def bounding_box(obj, yolo_format = False):
     height = int(scene.render.resolution_y * render_scale)
     mat   = obj.matrix_world
 
-    # Initial value for the the objects edges form the cmaera perspecitve
+    # Initial value for the the objects edges form the camera perspecitve
     x, y, _ = bpy_extras.object_utils.world_to_camera_view(scene, cam, obj.data.vertices[0].co)
     left = right = x
     top = bottom = y

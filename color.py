@@ -17,7 +17,7 @@ def shift_color(obj, collection_name):
         return obj_data[collection_name]['custom_function'](obj, collection_name)
     # Materials to be used
     materials = []
-    # Choose a random color, unless is there are already colors defined for a particular mesh in obj_data
+    # Choose a random color, unless there are already colors defined for a particular mesh in obj_data
     color = random.choice(obj_data[collection_name]['colors']) if 'colors' in obj_data[collection_name] else None
     
     # Go through all materials
