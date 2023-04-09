@@ -44,8 +44,8 @@ def save():
         for i, v in prog.items():
             f.write(f'{i}:{v}\n')
 
-def read():
-    if not os.path.exists('progress.txt'):
+def load():
+    if not os.path.exists(prog_file_name):
         return
     with open(prog_file_name, 'r') as f:
         for i in f.read().splitlines():
@@ -58,6 +58,6 @@ def progress(colname):
     Save in a txt file the progress made
     """
     if len(prog) == 0:
-        read()
+        load()
     prog[colname] = prog[colname] + 1 if colname in prog else 1
     save()
