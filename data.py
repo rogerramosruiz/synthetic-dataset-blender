@@ -7,8 +7,8 @@ images_per_class = 0
 file_name_size     = 10
 # Location to save the dataset, must be full path
 save_dir          = 'D:/dataset_shyntethic'
-# Location of the images
-img_dir           = 'D:/images/background'
+# Location of the images, must be full path
+img_dir           = 'D:/images'
 
 # Probability of having more than one object per background image
 # if the value is 0 then there will just one object per background image
