@@ -3,7 +3,7 @@ import subprocess
 
 from helper import blender_location, edit, get_blender_file
 """
-The executer is used to separate in many chunks the total render and thus avoiding error of 
+The executer is used to separate in many chunks the total images to render and thus avoiding error of 
 RAM or the GPU memory being saturated:
 
 Error: System is out of GPU and shared host memory 

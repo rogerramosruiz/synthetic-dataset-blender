@@ -39,11 +39,26 @@ cd  synthetic-dataset-blender
 
 ## Set up Blender 
 ### Download file 
+Download the next file and place it in this project folder
+
 https://media.githubusercontent.com/media/rogerramosruiz/blender-files/main/plastics.blend
 
 ### Configure lightning
 Open the file in Blender, go to shading in nodes select world,
 in the node Environment Texture select open and select a .exr or HDRI file to use in render, Blender comes with .exr files in the location where it's installed in the version folder datafiles>studiolights>world, select one lighting like city.exr.
+
+Windows
+
+``C:\Program Files\Blender Foundation\Blender ${blender verison}\${blender version}\datafiles\studiolights\world`` 
+
+e.g
+blender version = 3.5
+
+``C:\Program Files\Blender Foundation\Blender 3.5\3.5\datafiles\studiolights\world\``
+
+Linux
+
+``/usr/share/blender/datafiles/studiolights/world``
 
 ### Set render engine
 - Development: it's recomended to use Eveee engine
