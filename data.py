@@ -1,12 +1,7 @@
-# name of the collection to start
-collection_start  = 'bag'
-# name of the collection to end
-collection_end    = 'straw'
 # Number of images to generate per class or collection
-# E.G if  there are three collections A, B, C and images_per_class=10 
+# E.G if  there are three collections A, B, C and the value is set to  10 
 # then there will be at least 10 images with collection A, 10 with B, and 10 with C
 # in total there will be 30 images
-
 images_per_class = 1
 # name length of the files
 file_name_size     = 10

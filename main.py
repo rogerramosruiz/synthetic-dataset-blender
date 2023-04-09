@@ -11,7 +11,7 @@ from objOps import delete
 from background import change_background
 from camera import bounding_box, change_focal_length
 from utils import init, progress
-from data import file_name_size, save_dir, img_dir, images_per_class, prob_many_objs, prob_add_obj, collection_start, collection_end
+from data import file_name_size, save_dir, img_dir, images_per_class, prob_many_objs, prob_add_obj
 from color import shift_color
 
 def save(objs, colls):
@@ -142,18 +142,11 @@ def use_collection(collection):
         bpy.data.materials.remove(material)
 
 def main(n):
-    b = False
     # Collections to render
     for i in collections:
-        if i.name == collection_start:
-            b = True
-        if b:
-            for j in range(n):
-                use_collection(i)
-                progress(i.name, j+1, n)
+        for _ in range(n):
+            use_collection(i)
             progress(i.name)
-        if i.name == collection_end:
-            break
 
 if __name__ == '__main__':
     start_time = time.time()
