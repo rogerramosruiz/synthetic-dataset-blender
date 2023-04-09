@@ -6,13 +6,13 @@ collection_end = 'straw'
 # E.G if  there are three collections A, B, C and the value is set to  10 
 # then there will be at least 10 images with collection A, 10 with B, and 10 with C
 # in total there will be 30 images
-images_per_class = 3
+images_per_class = 0
 # name length of the files
 file_name_size     = 10
 # Location to save the dataset, must be full path
 save_dir          = 'D:/dataset_shyntethic'
 # Location of the images
-img_dir           = 'D:/generadores/synthtetic_dataset/images/background'
+img_dir           = 'D:/images/background'
 
 # Probability of having more than one object per background image
 # if the value is 0 then there will just one object per background image

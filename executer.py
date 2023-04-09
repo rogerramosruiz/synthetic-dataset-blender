@@ -4,9 +4,9 @@ import subprocess
 from helper import blender_location, edit, get_blender_file
 
 # Images to render per class
-images_per_classs = 5
+images_per_classs = 1000
 # images to render per execution
-max_imgs = 3
+max_imgs = 100
 
 def render():
     subprocess.run([blender_command, blender_file, "--background", "--python", "main.py"])
