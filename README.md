@@ -49,16 +49,22 @@ in the node Environment Texture select open and select a .exr or HDRI file to us
 
 Windows
 
-``C:\Program Files\Blender Foundation\Blender ${blender verison}\${blender version}\datafiles\studiolights\world`` 
+```
+C:\Program Files\Blender Foundation\Blender ${blender verison}\${blender version}\datafiles\studiolights\world
+``` 
 
 e.g
 blender version = 3.5
 
-``C:\Program Files\Blender Foundation\Blender 3.5\3.5\datafiles\studiolights\world\``
+```
+C:\Program Files\Blender Foundation\Blender 3.5\3.5\datafiles\studiolights\world\
+```
 
 Linux
 
-``/usr/share/blender/datafiles/studiolights/world``
+```
+/usr/share/blender/datafiles/studiolights/world
+```
 
 ### Set render engine
 - Development: it's recomended to use Eveee engine
