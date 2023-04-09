@@ -1,6 +1,8 @@
 import os 
+from data import collection_start, collection_end
 
 prog = {}
+prog_file_name = f'prog {collection_start}-{collection_end}.txt'
 
 def convert_yolo(x1,y1,x2,y2, shape):
     x = ((x1 + x2) / 2) / shape[1]
@@ -38,14 +40,14 @@ def init(collections, path):
     return names
 
 def save():
-    with open('progress.txt', 'w') as f:
+    with open(prog_file_name, 'w') as f:
         for i, v in prog.items():
             f.write(f'{i}:{v}\n')
 
 def read():
     if not os.path.exists('progress.txt'):
         return
-    with open('progress.txt', 'r') as f:
+    with open(prog_file_name, 'r') as f:
         for i in f.read().splitlines():
             vals  = i.split(':')
             prog[vals[0]] = int(vals[1])

@@ -6,7 +6,7 @@ import subprocess
 # total images to render per class
 images_per_classs = 1
 
-# images to render per epoch
+# images to render per execution
 max_imgs = 3
 
 blender_file = "start_1.blend"
