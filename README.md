@@ -33,7 +33,7 @@ Example:
 
 ## Clone repo
 ```bash
-git https://github.com/rogerramosruiz/synthetic-dataset-blender.git 
+git clone https://github.com/rogerramosruiz/synthetic-dataset-blender.git 
 cd  synthetic-dataset-blender
 ```
 
