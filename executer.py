@@ -1,7 +1,7 @@
 import time
 import subprocess
 
-from helper import blender_location, edit
+from helper import blender_location, edit, get_blender_file
 
 # Images to render per class
 images_per_classs = 5
@@ -25,7 +25,9 @@ if __name__ == '__main__':
     executions = images_per_classs // max_imgs
     # Remainder images to render 
     rest = images_per_classs % max_imgs
-    blender_file = "start_1.blend"
+    # blender file to use 
+    blender_file = get_blender_file()
+    # get blender command depending on the version
     blender_command = blender_location()
-
+    
     main()
