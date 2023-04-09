@@ -9,9 +9,9 @@ RAM or the GPU memory being saturated:
 Error: System is out of GPU and shared host memory 
 """
 # Images to render per class
-images_per_classs = 1
+images_per_classs = 1000
 # images to render per execution
-max_imgs = 3
+max_imgs = 100
 
 def render():
     subprocess.run([blender_command, blender_file, "--background", "--python", "main.py"])
